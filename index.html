@@ -6,16 +6,102 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/jquery.typeit/4.3.0/typeit.min.js"></script>
+
+<script>$('.type-it').typeIt({
+    strings: ['Enter your string here!', 'Another string!']
+  });</script>
+  <script>
+
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+   // Make sure this.hash has a value before overriding default behavior
+  if (this.hash !== "") {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 2000, function(){
+
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+
+</script> 
+
+
 <style>
+.slideanim {visibility:visible;}
+.slide {
+    /* The name of the animation */
+    animation-delay:0.4s;
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    /* The duration of the animation */
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    /* Make the element visible */
+    visibility: visible;
+}
+
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        
+        opacity: 0;
+        transform: translateY(70%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+$(window).scroll(function() {
+  $(".slideanim").each(function(){
+    var pos = $(this).offset().top;
+
+    var winTop = $(window).scrollTop();
+    if (pos < winTop + 600) {
+      $(this).addClass("slide");
+    }
+  });
+}); 
 .jumbotron {
     background-color: #f4511e; /* Orange */
     color: #ffffff;
 }
-
+img {
+    width:50%;
+    
+}
+img:hover{
+    width:85%;
+}
 .bg-grey {
     background-color: #f6f6f6;
 }
@@ -84,7 +170,7 @@
 .panel {
     border: 1px solid #f4511e;
     border-radius:0;
-    transition: box-shadow 0.9s;
+    transition: box-shadow 2s;
 }
 
 .panel:hover {
@@ -167,7 +253,7 @@ footer .glyphicon {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">BootStrap Theme</a>
+      <a class="navbar-brand" href="#">Company Theme</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -181,8 +267,8 @@ footer .glyphicon {
   </div>
 </nav> 
 <div class="jumbotron text-center">
-  <h1>Demo Co</h1>
-  <p>Want a custom site?</p>
+  <h1 class="slide">Demo Co</h1>
+  <p class="slide">You want a custom site?</p>
   <form class="form-inline">
     <div class="input-group">
       <input type="email" class="form-control" size="50" placeholder="Email Address" required>
@@ -191,26 +277,27 @@ footer .glyphicon {
       </div></div>
   </form><div>
 </div>
-<div id="about" class="container-fluid">
+<div class="container-fluid">
   <h2>I've got you covered.</h2>
+  <span class="type-it">hello</span>
   <h4>Take a look...</h4>
   <p>Then Hit Me Up..</p>
   <button class="btn btn-default btn-lg">Get in Touch</button>
 </div><div></div></div>
-<div></div><br/>
-<div class="container-fluid">
+
+<div id="about" onfocus="slide" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
       <h2>I make responsive eye-catching pages for Businesses, Groups and Individuals</h2>
       <h4>Try rotating your device or viewing this page in different browser widths to see how it reacts.</h4>
       <p>Your online identity is very important. Let's make it look <b><i>good</i></b>...</p>
       <button class="btn btn-default btn-lg">Get in Touch</button>
-    </div>
+    </div><br/>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-signal logo"></span>
     
   </div>
-
+\
 
 <div id="about" class="container-fluid bg-grey">
   <div class="row">
@@ -222,7 +309,7 @@ footer .glyphicon {
       <h4><strong>MISSION:</strong> <br/>The purpose of this page is to demonstrate use of Responsive BootStrap elements. Everything you see here was made in code via a text editor.</h4>
       <p> <span class="glyphicon glyphicon-bookmark logo-small"></span><strong>VISION:</strong> <br/>All of the work on this project is 100% open-source, and can be viewed on <a href="https://www.github.com">GitHub</a>.</p>
     </div>
-   
+   <br/><img class="logo-small" src="https://github.com/brandonragged/bootstrap/blob/master/raggedbs.gif?raw=true">
   </div>
 </div>
 <div id="services" class="container-fluid text-center">
@@ -233,17 +320,17 @@ footer .glyphicon {
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-off logo-small"></span>
       <h4>POWER</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>The impression you give to others should be your biggest asset. Let's define your persona or business online, <b>beautifully</b>.</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-heart logo-small"></span>
       <h4>LOVE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>An important motto in my life has always been to <b>act with love. </b></p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-lock logo-small"></span>
-      <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <h4>BACKGROUND</h4>
+      <p>I first started working in linux & command prompt in 2005, using Putty & SSL to bypass security firewalls (for fun).</p>
     </div>
     </div>
     <br><br>
@@ -251,20 +338,21 @@ footer .glyphicon {
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-leaf logo-small"></span>
       <h4>GREEN</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>Like everything I do: Without the use of any animal products, or exploitation. An integral part of making tomorrow better.</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-certificate logo-small"></span>
       <h4>CERTIFIED</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>I'm cerdified in multiple coding languages. More importantly, I practice daily, and am building more proofs consistantly. If you really care to see my certifications, just ask.</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-wrench logo-small"></span>
       <h4>HARD WORK</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>I'm a problem-solver by nature. I love understanding how things work, and how thin the veil of "security" is.
+      I started a successful Locksmith Company back in 2011. For the past 3+ years my main focus has been working on the back-end for crypto-currency wallets and exchange platforms, as well as mining operations.</p>
     </div>
 </div>
-<div class="container-fluid text-center bg-grey">
+<div id="portfolio" class="container-fluid text-center bg-grey">
   <h2>Portfolio</h2>
   <h4>Some examples of my work</h4>
   <div class="row text-center">
@@ -323,7 +411,7 @@ footer .glyphicon {
     <span class="sr-only">Next</span>
   </a>
 </div> 
-<div class="container-fluid">
+<div id="pricing" class="container-fluid">
   <div class="text-center">
     <h2>Pricing</h2>
     <h4>Choose a payment plan that works for you</h4>
@@ -389,7 +477,7 @@ footer .glyphicon {
   </div>
 </div>
 </div>
- <div class="container-fluid bg-grey">
+ <div id="contact" class="container-fluid bg-grey">
   <h2 class="text-center">CONTACT</h2>
   <div class="row">
     <div class="col-sm-5">
